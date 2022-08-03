@@ -1,20 +1,34 @@
-import Container from "../Container";
-import "./ItemListContainer.css"
+import { useEffect, useState } from "react";
+import Data from "../Data/Index";
+import ItemList from "../ItemList";
+
 
 export default function ItemListContainer(props){
+
+    const getFetch = new Promise((res,rej)=>{
+        let condition = true
+        if(Data){
+            setTimeout(()=>{res(Data)},2000);
+        } else{
+            rej(console.log("No hay datos"))
+        }
+    })
+    
+    const[data,setData]=useState([])
+    const[loading,setLoading]=useState(true) 
+
+    useEffect(()=>{
+        getFetch.then((resp)=>setData(resp))
+        .catch(err=>console.log(err))
+        .finally(()=>setLoading(false))
+    },[])
+
     return  (
     <div class="container">
-        <div class="row align-items-start">
-            <div  class="col estilos">
-                <Container texto={props.items[0]} stock={props.stock[0]}></Container>
-            </div>
-            <div  class="col estilos">
-                <Container texto={props.items[1]} stock={props.stock[1]}></Container>
-            </div>
-            <div  class="col estilos">
-                <Container texto={props.items[2]} stock={props.stock[2]}></Container>
-            </div>
-        </div>
-    </div>    
+        {
+        loading ? <h2>Cargando...</h2>:
+        <ItemList data={data}></ItemList>
+        }
+    </div>
     )            
 }

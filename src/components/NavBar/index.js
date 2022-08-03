@@ -1,9 +1,10 @@
 import CartWidget from "../CartWidget";
+import "./NavBar.css";
 
  
  function NavBar(){   
     
-    return  <nav class="navbar navbar-dark bg-dark">
+    return  <nav class="navbar navbar-dark bg-dark marginDis">
                 <div class="container-fluid">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
