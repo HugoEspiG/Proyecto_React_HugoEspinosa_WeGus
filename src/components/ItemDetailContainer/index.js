@@ -1,32 +1,32 @@
 import { useEffect, useState } from "react";
-import Data from "../Data/Index";
-import ItemList from "../ItemList";
+import ItemDetail from "../ItemDetail";
 
+export default function ItemDetailContainer(props){
 
-export default function ItemListContainer(props){
-
-    const getFetch = new Promise((res,rej)=>{
-        if(Data){
-            setTimeout(()=>{res(Data)},2000);
+    const getItem = new Promise((res,rej)=>{
+        if(props.item){
+            setTimeout(()=>{res(props.item)},2000);
         } else{
             rej(console.log("No hay datos"))
         }
     })
     
-    const[data,setData]=useState([])
+    const[Item,setItem]=useState([])
     const[loading,setLoading]=useState(true) 
 
     useEffect(()=>{
-        getFetch.then((resp)=>setData(resp))
+        getItem.then((resp)=>setItem(resp))
         .catch(err=>console.log(err))
         .finally(()=>setLoading(false))
     },[])
 
     return  (
+    
     <div class="container">
+
         {
         loading ? <h2>Cargando...</h2>:
-        <ItemList data={data}></ItemList>
+        <ItemDetail item={Item}></ItemDetail>
         }
     </div>
     )            

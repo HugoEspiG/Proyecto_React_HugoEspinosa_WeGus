@@ -7,7 +7,7 @@ export default function ItemList(props){
     <div class="row align-items-start">
         {props.data.map(cerv=>
         <div class="col estilos" align="center">
-            <Item texto={cerv.nombre} src={cerv.img} stock={cerv.stock} category={cerv.category}></Item>
+            <Item id={cerv.id} texto={cerv.nombre} src={cerv.img} stock={cerv.stock} category={cerv.category} desc={cerv.descripcion}></Item>
         </div>)}
     </div>
     )
