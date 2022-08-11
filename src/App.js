@@ -1,19 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
-import Footer from './components/Footer';
-import Header from './components/Header';
-import ItemListContainer from './components/ItemListContainer';
+import {Routes,Route} from 'react-router-dom';
+import Home from './pages/Home';
+import About from './pages/About';
+import Outfits from './pages/Outfits';
+import Details from './pages/Details';
 
 function App() {
   return (
     <div>
-      <header>
-        <Header/>
-      </header>
-      <body>
-      <ItemListContainer></ItemListContainer>
-      <Footer/>
-      </body>
+      <Routes>
+        <Route path='/' element={<Home></Home>}/>
+        <Route path='/About-us' element={<About></About>}/>
+        <Route path='/Outfits' element={<Outfits/>}/>
+        <Route path='/Outfits/:id' element={<Details/>}/>
+      </Routes>
     </div>
   );
 }
