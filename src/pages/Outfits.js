@@ -4,15 +4,15 @@ import ItemListContainer from '../components/ItemListContainer';
 
 export default function Outfits(){
     return(
-        <div>
+    <div>
         <header>
             <Header/>
         </header>
         <body>
-        <ItemListContainer></ItemListContainer>
-        <Footer></Footer>
+        <ItemListContainer/>
+        <Footer/>
         </body>
-        </div>
+    </div>
         
     )
 }

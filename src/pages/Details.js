@@ -10,9 +10,9 @@ export default function Details(){
         </header>
         <body>
         <div>
-            <ItemDetailContainer></ItemDetailContainer>
+            <ItemDetailContainer/>
         </div>
-        <Footer></Footer>
+        <Footer/>
         </body>
     </div>
     )

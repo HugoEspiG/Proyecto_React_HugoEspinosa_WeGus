@@ -14,9 +14,9 @@ export default function ItemDetailContainer(props){
             setItem(resp)
         }
         loadUserInfo();
-    },[id]) 
-    return  (
-    
+    },[id])
+
+    return  (    
     <div class="container">
         {
         <ItemDetail item={item}></ItemDetail>

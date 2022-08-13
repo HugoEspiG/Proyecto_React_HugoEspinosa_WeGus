@@ -19,7 +19,7 @@ function Item(props){
     };
 
     const loadUserDetails = ()=>{
-        navigateFn(`/Outfits/${aux.id}`)
+        navigateFn(`/Outfits/${aux.category}/${aux.id}`)
     }
 
     return  (

@@ -9,7 +9,7 @@ export default function About(){
         </header>
         <body>
         <div>About-us</div>
-        <Footer></Footer>
+        <Footer/>
         </body>
     </div>
     )

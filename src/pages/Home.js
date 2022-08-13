@@ -9,7 +9,7 @@ export default function Home(){
           <Header/>
         </header>
         <body>
-        <ItemListContainer></ItemListContainer>
+        <ItemListContainer/>
         <Footer/>
         </body>    
     </div>    

@@ -1,32 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState  } from "react";
+import { useParams } from "react-router-dom";
 import Data from "../Data/Index";
 import ItemList from "../ItemList";
-
+import { ItemApi } from "../../api/ItemApi";
 
 export default function ItemListContainer(props){
 
-    const getFetch = new Promise((res,rej)=>{
-        if(Data){
-            setTimeout(()=>{res(Data)},2000);
-        } else{
-            rej(console.log("No hay datos"))
-        }
-    })
-    
-    const[data,setData]=useState([])
-    const[loading,setLoading]=useState(true) 
+    const{category} = useParams();
+    const[data,setData]=useState([]);
+    const[loading,setLoading]=useState(true)
 
+    
     useEffect(()=>{
-        getFetch.then((resp)=>setData(resp))
-        .catch(err=>console.log(err))
-        .finally(()=>setLoading(false))
-    },[])
+        async function loadData(){
+            const resp = await ItemApi.getItems(category);
+            setData(resp);
+            setLoading(false);
+        }
+        setTimeout(()=>{loadData()},2000)
+        // loadData();
+    },[category])
 
     return  (
     <div class="container">
         {
-        loading ? <h2>Cargando...</h2>:
-        <ItemList data={data}></ItemList>
+            loading?<h2>Cargando...</h2>:
+            <ItemList data={data}/>
         }
     </div>
     )            
