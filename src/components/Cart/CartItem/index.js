@@ -1,10 +1,11 @@
-import React, { memo } from 'react'
+import { memo,useContext} from 'react'
 import Imagen from '../../Imagen'
+import {CartContext} from '../../../context/CartContext'
 
 function CartItem({ item }) {
 
   console.log('>>> render CartItem!');
-
+  const {removeProduct}=useContext(CartContext)
   return (
     <tr>
       <th scope="row">{item.item.id}</th>
@@ -13,7 +14,7 @@ function CartItem({ item }) {
       <td>{item.quantity}</td>
       <td>{item.item.precio}</td>
       <td>{item.item.precio*item.quantity}</td>
-      <td></td>
+      <td><button onClick={()=>{removeProduct(item.item)}} class="bi bi-dash-circle-fill  bg-transparent border border-light"> remover</button></td>
     </tr>
   )
 }

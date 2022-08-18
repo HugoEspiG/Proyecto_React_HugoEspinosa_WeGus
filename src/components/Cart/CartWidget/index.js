@@ -1,11 +1,16 @@
-import Imagen from '../../Imagen';
-import {Link} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
+import { useContext } from 'react';
+import {CartContext} from '../../../context/CartContext';
 
 export default function CartWidget(){    
+    const navigateFn= useNavigate();
+    const {cartData}=useContext(CartContext)
+
+    const loadCart = ()=>{
+        navigateFn(`/Cart`)
+    }
     return(
-        <button type="button" class="btn btn-light">
-            <Imagen src={process.env.PUBLIC_URL+'/Assets/carrito-compras.png'} tam='sm' alt='Carrito de Compras' ubi='end'/>
-        </button>
+        <button onClick={loadCart} class="btn btn-light bi bi-cart2">{cartData.length}</button>
     )
 
 }
