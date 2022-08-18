@@ -1,4 +1,5 @@
-import Imagen from '../Imagen';
+import Imagen from '../../Imagen';
+import {Link} from 'react-router-dom'
 
 export default function CartWidget(){    
     return(

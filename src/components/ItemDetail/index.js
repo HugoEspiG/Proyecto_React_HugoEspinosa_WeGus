@@ -1,14 +1,18 @@
 import Imagen from "../Imagen";
 import ItemCount from "../ItemCount";
 import "./ItemDetail.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {CartContext} from'../.././context/CartContext'
 
 export default function ItemDetail(props){
-    const nf = new Intl.NumberFormat('en-US')
+
     const [addedToCart, setAddedToCart] = useState(false);
     const navigateFn= useNavigate();
-    const onAddItems = () => {
+    const { addCartItem, isInCart } = useContext(CartContext);
+
+    const onAddItems = (quantityToAdd) => {
+        addCartItem({item: props.item, quantity: quantityToAdd})
         setAddedToCart(true);
       };
     const goCart = ()=>{
@@ -17,7 +21,6 @@ export default function ItemDetail(props){
     const goBack = ()=>{
         navigateFn(`/`)
     }
-
     return(
         <div class="row g-0">
             <h2>Detalles</h2>
@@ -39,7 +42,15 @@ export default function ItemDetail(props){
                     </div>
                 </div>:
                 <div>
-                <ItemCount stock={nf.format(props.item.stock)} onAddToCart={onAddItems}></ItemCount> 
+                {
+                isInCart(props.item)?
+                <div>
+                <h3>Articulo ya añadido al carrito</h3>
+                <button onClick={goCart} class="btn btn-dark btn btn-secondary button-tam">Ir al Carrito</button>
+                </div>
+                :
+                <ItemCount stock={props.item.stock}  onAddToCart={onAddItems}></ItemCount>
+                } 
                 </div>
                 }    
             </div>

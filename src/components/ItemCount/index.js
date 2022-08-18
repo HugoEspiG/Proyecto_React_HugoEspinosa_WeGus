@@ -11,7 +11,7 @@ function Contador(props){
             <button onClick={()=>{(contador>0)?setContador(contador-1):setContador(contador)}} class="border border-dark tam rounded-end border-start-0 bg-transparent">-</button>
         </div>
         <div>
-            <button onClick={()=>{props.onAddToCart()}}class="btn btn-dark bi bi-cart-plus btn btn-secondary button-tam"> Agregar </button>
+            <button onClick={()=>{props.onAddToCart(contador)}}class="btn btn-dark bi bi-cart-plus btn btn-secondary button-tam"> Agregar </button>
         </div>
     </div>
     );
