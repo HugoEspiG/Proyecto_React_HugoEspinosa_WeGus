@@ -3,7 +3,7 @@ import ItemCount from "../ItemCount";
 import "./ItemDetail.css";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {CartContext} from'../.././context/CartContext'
+import {CartContext} from'../../context/CartContext'
 
 export default function ItemDetail(props){
 

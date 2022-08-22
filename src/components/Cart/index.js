@@ -5,7 +5,10 @@ import './Cart.css'
 
 export default function Cart(){
     const {cartData,clearCart} = useContext(CartContext)
-    return(
+    const totalPrecio = cartData.reduce((prev, next) => {
+        return prev + (next.quantity*next.item.precio);
+      }, 0);
+      return(
         <div> 
             {(cartData.length > 0) ? 
             (
@@ -30,7 +33,12 @@ export default function Cart(){
                     </tbody>
                 </table>
                 <div align="end">
-                    <button onClick={clearCart} class="bi bi-trash bg-transparent border border-light size"> vaciar carrito</button>
+                    <p>Subtotal: {totalPrecio}</p>
+                    <h3>Total: {totalPrecio}</h3>
+                </div>
+                <div  class="d-grid gap-2 d-md-flex justify-content-md-end" align="end">
+                <button onClick={clearCart} class="btn btn-dark">vaciar carrito</button>
+                <button class="btn btn-dark">Terminar compra</button>
                 </div>
             </div>
             )

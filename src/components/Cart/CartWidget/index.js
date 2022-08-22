@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import {CartContext} from '../../../context/CartContext';
 
 export default function CartWidget(){    
@@ -9,8 +9,12 @@ export default function CartWidget(){
     const loadCart = ()=>{
         navigateFn(`/Cart`)
     }
+
+    const totalItems = cartData.reduce((prev, next) => {
+        return prev + next.quantity;
+      }, 0);
     return(
-        <button onClick={loadCart} class="btn btn-light bi bi-cart2">{cartData.length}</button>
+        <button onClick={loadCart} class="btn btn-light bi bi-cart2">{" "+totalItems}</button>
     )
 
 }
