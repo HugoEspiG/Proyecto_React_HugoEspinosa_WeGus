@@ -10,11 +10,11 @@ function CartItem({ item }) {
     <tr>
       <th scope="row">{item.item.id}</th>
       <td><Imagen src={item.item.img} tam='md' ubi='mx-auto d-block'/></td>
-      <td>{item.item.nombre}</td>
-      <td>{item.quantity}</td>
-      <td>{item.item.precio}</td>
-      <td>{item.item.precio*item.quantity}</td>
-      <td><button onClick={()=>{removeProduct(item.item)}} class="bi bi-dash-circle-fill  bg-transparent border border-light"> remover</button></td>
+      <td  class="text-center fs-4">{item.item.nombre}</td>
+      <td  class="text-center fs-4">{item.quantity}</td>
+      <td  class="text-center fs-4">{item.item.precio}</td>
+      <td  class="text-center fs-4">{item.item.precio*item.quantity}</td>
+      <td><button onClick={()=>{removeProduct(item.item)}} class="bi bi-dash-circle-fill  bg-transparent border border-light text-center"></button></td>
     </tr>
   )
 }

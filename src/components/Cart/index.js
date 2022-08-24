@@ -6,7 +6,7 @@ import './Cart.css'
 export default function Cart(){
     const {cartData,clearCart} = useContext(CartContext)
     const totalPrecio = cartData.reduce((prev, next) => {
-        return prev + (next.quantity*next.item.precio);
+        return prev + (next.item.quantity*next.item.item.precio);
       }, 0);
       return(
         <div> 
@@ -16,18 +16,18 @@ export default function Cart(){
                 <table class="table">
                     <thead class="table-dark">
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Imagen</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Cantidad</th>
-                        <th scope="col">Precio unidad</th>
-                        <th scope="col">Precio total</th>
-                        <th scope="col"></th>
+                        <th scope="col"  class="text-center">#</th>
+                        <th scope="col"  class="text-center">Imagen</th>
+                        <th scope="col"  class="text-center">Nombre</th>
+                        <th scope="col"  class="text-center">Cantidad</th>
+                        <th scope="col"  class="text-center">Precio unidad</th>
+                        <th scope="col"  class="text-center">Precio total</th>
+                        <th scope="col"  class="text-center"></th>
                     </tr>
                     </thead>
                     <tbody>
                     {cartData.map((item) => {
-                    return( <CartItem item={item}/>
+                    return( <CartItem item={item.item}/>
                     )
                     })}
                     </tbody>

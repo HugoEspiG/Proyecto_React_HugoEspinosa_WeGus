@@ -14,7 +14,7 @@ export default function ItemDetail(props){
     const onAddItems = (quantityToAdd) => {
         addCartItem({item: props.item, quantity: quantityToAdd})
         setAddedToCart(true);
-      };
+    }
     const goCart = ()=>{
         navigateFn(`/Cart`)
     }
@@ -44,10 +44,7 @@ export default function ItemDetail(props){
                 <div>
                 {
                 isInCart(props.item)?
-                <div>
-                <h3>Articulo ya añadido al carrito</h3>
-                <button onClick={goCart} class="btn btn-dark btn btn-secondary button-tam">Ir al Carrito</button>
-                </div>
+                <ItemCount stock={props.item.stock}  onAddToCart={onAddItems}></ItemCount>
                 :
                 <ItemCount stock={props.item.stock}  onAddToCart={onAddItems}></ItemCount>
                 } 

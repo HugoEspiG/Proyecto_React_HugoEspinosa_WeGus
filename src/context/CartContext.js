@@ -4,10 +4,11 @@ export const CartContext=React.createContext([]);
 
 export default function CartCustomContext({children}){
 const[cart,setCart]=useState([])
-const[totProd,setTotProd]=useState(0)
 
 const addCartItem =(item)=>{
-    const listActual=[...cart,item]
+    const listActual=cart.filter((prod)=>prod.item.item.id!==item.item.id)
+    listActual.push({...cart,item})
+    console.log(listActual)
     setCart(listActual)
 }
 const clearCart= ()=>{setCart([])}
@@ -26,7 +27,7 @@ const numItems=()=>{
     return 0;
 }
 const removeProduct = (item)=>{
-    setCart(cart.filter((product)=>product.item.id!== item.id))
+    setCart(cart.filter((product)=>product.item.item.id!== item.id))
     console.log(cart)
 }
     return(

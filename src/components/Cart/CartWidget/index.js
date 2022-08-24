@@ -11,8 +11,9 @@ export default function CartWidget(){
     }
 
     const totalItems = cartData.reduce((prev, next) => {
-        return prev + next.quantity;
+        return prev + next.item.quantity;
       }, 0);
+
     return(
         <button onClick={loadCart} class="btn btn-light bi bi-cart2">{" "+totalItems}</button>
     )
