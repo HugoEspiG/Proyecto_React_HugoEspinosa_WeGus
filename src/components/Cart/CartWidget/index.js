@@ -15,7 +15,7 @@ export default function CartWidget(){
       }, 0);
 
     return(
-        <button onClick={loadCart} class="btn btn-light bi bi-cart2">{" "+totalItems}</button>
+        <button onClick={loadCart} className="btn btn-light bi bi-cart2">{" "+totalItems}</button>
     )
 
 }

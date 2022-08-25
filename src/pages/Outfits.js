@@ -8,10 +8,8 @@ export default function Outfits(){
         <header>
             <Header/>
         </header>
-        <body>
         <ItemListContainer/>
         <Footer/>
-        </body>
     </div>
         
     )

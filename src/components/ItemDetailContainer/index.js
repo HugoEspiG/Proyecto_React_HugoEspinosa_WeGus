@@ -1,6 +1,6 @@
 import { useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
-import { ItemApi } from "../../api/ItemApi";
+import { getItem } from "../../api/ItemApi";
 import ItemDetail from "../ItemDetail";
 
 export default function ItemDetailContainer(props){
@@ -10,14 +10,14 @@ export default function ItemDetailContainer(props){
 
     useEffect(()=>{
         async function loadUserInfo(){
-            const resp = await ItemApi.getItem(id);
+            const resp = await getItem(id);
             setItem(resp)
         }
         loadUserInfo();
     },[id])
 
     return  (    
-    <div class="container">
+    <div className="container">
         {
         <ItemDetail item={item}></ItemDetail>
         }

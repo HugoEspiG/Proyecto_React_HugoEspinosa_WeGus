@@ -7,10 +7,8 @@ export default function About(){
         <header>
             <Header/>
         </header>
-        <body>
         <div>About-us</div>
         <Footer/>
-        </body>
     </div>
     )
 }

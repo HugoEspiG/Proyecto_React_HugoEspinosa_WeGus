@@ -8,12 +8,10 @@ export default function CartPage(){
             <header>
                 <Header/>
             </header>
-            <body>
                 <div>
                     <Cart/>
                 </div>
             <Footer/>
-            </body>
         </div>
         )
 }

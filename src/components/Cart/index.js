@@ -13,32 +13,31 @@ export default function Cart(){
             {(cartData.length > 0) ? 
             (
             <div>
-                <table class="table">
-                    <thead class="table-dark">
+                <table className="table">
+                    <thead className="table-dark">
                     <tr>
-                        <th scope="col"  class="text-center">#</th>
-                        <th scope="col"  class="text-center">Imagen</th>
-                        <th scope="col"  class="text-center">Nombre</th>
-                        <th scope="col"  class="text-center">Cantidad</th>
-                        <th scope="col"  class="text-center">Precio unidad</th>
-                        <th scope="col"  class="text-center">Precio total</th>
-                        <th scope="col"  class="text-center"></th>
+                        <th scope="col"></th>
+                        <th scope="col"  className="text-center">Imagen</th>
+                        <th scope="col"  className="text-center">Nombre</th>
+                        <th scope="col"  className="text-center">Cantidad</th>
+                        <th scope="col"  className="text-center">Precio unidad</th>
+                        <th scope="col"  className="text-center">Precio total</th>
+                        <th scope="col"  className="text-center"></th>
                     </tr>
                     </thead>
                     <tbody>
-                    {cartData.map((item) => {
-                    return( <CartItem item={item.item}/>
-                    )
-                    })}
+                    {cartData.map((item,Index) => 
+                    <CartItem key={Index}  item={item.item}/>
+                    )}
                     </tbody>
                 </table>
                 <div align="end">
                     <p>Subtotal: {totalPrecio}</p>
                     <h3>Total: {totalPrecio}</h3>
                 </div>
-                <div  class="d-grid gap-2 d-md-flex justify-content-md-end" align="end">
-                <button onClick={clearCart} class="btn btn-dark">vaciar carrito</button>
-                <button class="btn btn-dark">Terminar compra</button>
+                <div  className="d-grid gap-2 d-md-flex justify-content-md-end" align="end">
+                <button onClick={clearCart} className="btn btn-dark">vaciar carrito</button>
+                <button className="btn btn-dark">Terminar compra</button>
                 </div>
             </div>
             )

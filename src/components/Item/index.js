@@ -24,12 +24,12 @@ function Item(props){
 
     return  (
     <div>
-        <div class="card estilos center">
-            <p class="card-header bg-opacity-50">{aux.category}</p>
-            <div class="mx-auto"><Imagen src={aux.img} tam='md' ubi='mx-auto d-block'></Imagen></div>
-            <div class="center">{aux.texto}</div>
-            <button onClick={loadUserDetails} class="center spacing-btn border border-secundary rounded bg-light">Ver detalle del producto</button>
-            <p class="card-footer bg-opacity-50">stock disponible: {aux.stock}</p>
+        <div className="card estilos center">
+            <p className="card-header bg-opacity-50">{aux.category}</p>
+            <div className="mx-auto"><Imagen src={aux.img} tam='md' ubi='mx-auto d-block'></Imagen></div>
+            <div className="center">{aux.texto}</div>
+            <button onClick={loadUserDetails} className="center spacing-btn border border-secundary rounded bg-light">Ver detalle del producto</button>
+            <p className="card-footer bg-opacity-50">stock disponible: {aux.stock}</p>
         </div>
     </div>
     )
