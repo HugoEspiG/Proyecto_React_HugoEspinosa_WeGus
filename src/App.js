@@ -4,8 +4,8 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Outfits from './pages/Outfits';
 import Details from './pages/Details';
-import Cart from './pages/CartPage';
 import CartPage from './pages/CartPage';
+import CheckOutPage from './pages/CheckOutPage';
 
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
         <Route path='/Outfits/:category' element={<Outfits/>}/>
         <Route path='/Outfits' element={<Outfits/>}/>
         <Route path='/Cart' element={<CartPage/>}/>
+        <Route path='/CheckOut' element={<CheckOutPage/>}/>
       </Routes>
     </div>
   );

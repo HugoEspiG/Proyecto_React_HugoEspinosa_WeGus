@@ -1,7 +1,6 @@
 // Import the functions you need from the SDKs you need
-import Data from "../components/Data/Index";
-import {DB} from "./FireBaseApi";
-import {collection,getDocs} from "firebase/firestore"
+import { DB } from "./FireBaseApi";
+import { collection, getDocs } from "firebase/firestore"
 
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -10,51 +9,51 @@ import {collection,getDocs} from "firebase/firestore"
 // Your web app's Firebase configuration
 
 
-export function getItems(category){
+export function getItems(category) {
 
-    return new Promise ((res,rej)=>{
-        const colRef=collection(DB,"Products")
-        getDocs(colRef).then((snapshot)=>{
-        const prodConFormato=snapshot.docs.map((rawDoc)=>{
-            return{
-                id:rawDoc.id,
-                ...rawDoc.data()
+    return new Promise((res, rej) => {
+        const colRef = collection(DB, "Products")
+        getDocs(colRef).then((snapshot) => {
+            const prodConFormato = snapshot.docs.map((rawDoc) => {
+                return {
+                    id: rawDoc.id,
+                    ...rawDoc.data()
+                }
+            })
+            var ItemsCategory = prodConFormato
+            if (category) {
+                ItemsCategory = prodConFormato.filter(function (elemento) { return elemento.category === category })
             }
-        })
-        var ItemsCategory=prodConFormato
-        if(category){     
-            ItemsCategory= prodConFormato.filter(function(elemento){return elemento.category===category})
-        }
-        res(ItemsCategory)
+            res(ItemsCategory)
 
-        },(error)=>{
-        rej('Error al intentar traer los docs: ',error)    
-            }
-            )
+        }, (error) => {
+            rej('Error al intentar traer los docs: ', error)
         }
+        )
+    }
     )
 }
 
-export function getItem(id){
-    return new Promise ((res,rej)=>{
-        const colRef=collection(DB,"Products")
-        getDocs(colRef).then((snapshot)=>{
-        const prodConFormato=snapshot.docs.map((rawDoc)=>{
-            return{
-                id:rawDoc.id,
-                ...rawDoc.data()
-            }
-        })
-        let ItemsCategory= prodConFormato.find(elemento=>elemento.id==id)
-        res(ItemsCategory)
+export function getItem(id) {
+    return new Promise((res, rej) => {
+        const colRef = collection(DB, "Products")
+        getDocs(colRef).then((snapshot) => {
+            const prodConFormato = snapshot.docs.map((rawDoc) => {
+                return {
+                    id: rawDoc.id,
+                    ...rawDoc.data()
+                }
+            })
+            let ItemsCategory = prodConFormato.find(elemento => elemento.id == id)
+            res(ItemsCategory)
 
-        },(error)=>{
-        rej('Error al intentar traer los docs: ',error)    
-            }
-            )
+        }, (error) => {
+            rej('Error al intentar traer los docs: ', error)
         }
+        )
+    }
     )
-
     // let itemDeseado=Data.find(elemento=>elemento.id==id)
     // return  itemDeseado
 }
+
