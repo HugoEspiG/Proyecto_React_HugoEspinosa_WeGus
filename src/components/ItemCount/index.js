@@ -7,7 +7,7 @@ function Contador(props){
     <div>
         <div className="btn-group w-100 p-3" role="group" aria-label="Basic example">
             <button onClick={()=>{(props.stock>contador)?setContador(contador+1):setContador(contador)}} className="border border-dark tam rounded-start border-end-0 bg-transparent">+</button>
-            <p className="border border-dark tam center border-end-0 border-start-0 bg-transparent" >{contador}</p>
+            <p className="border border-dark tam border-end-0 border-start-0 bg-transparent" align='center'>{contador}</p>
             <button onClick={()=>{(contador>1)?setContador(contador-1):setContador(contador)}} className="border border-dark tam rounded-end border-start-0 bg-transparent">-</button>
         </div>
         <div>
