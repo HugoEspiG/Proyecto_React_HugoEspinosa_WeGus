@@ -5,7 +5,7 @@ export default function CheckOut(){
 
     return(
         <div className="row g-0">
-            <div className="col-sm-6 col-md-8">
+            <div className="col-sm-6 col-md-7">
             <Identificacion/>
             </div>
             <div className="col-6 col-md-4">

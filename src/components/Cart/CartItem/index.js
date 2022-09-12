@@ -4,7 +4,6 @@ import {CartContext} from '../../../context/CartContext'
 
 function CartItem({ item }) {
 
-  console.log('>>> render CartItem!');
   const {removeProduct}=useContext(CartContext)
   return (
     <tr>

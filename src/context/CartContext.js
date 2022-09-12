@@ -8,7 +8,6 @@ export default function CartCustomContext({ children }) {
     const addCartItem = (item) => {
         const listActual = cart.filter((prod) => prod.item.item.id !== item.item.id)
         listActual.push({ ...cart, item })
-        console.log(listActual)
         setCart(listActual)
     }
     const clearCart = () => { setCart([]) }
@@ -22,7 +21,6 @@ export default function CartCustomContext({ children }) {
 
     const removeProduct = (item) => {
         setCart(cart.filter((product) => product.item.item.id !== item.id))
-        console.log(cart)
     }
     const totalPrecio  = cart.reduce((prev, next) => {
             return prev + (next.item.quantity * next.item.item.precio)
