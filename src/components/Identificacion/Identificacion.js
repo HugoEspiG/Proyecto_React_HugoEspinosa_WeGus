@@ -1,40 +1,66 @@
 import { useState } from "react"
-import Orden from "../Orden/Orden"
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
+import { doc, setDoc, collection, updateDoc, increment, serverTimestamp } from "firebase/firestore";
+import { DB } from "../../api/FireBaseApi"
 import "./Identificacion.css"
+import { useForm } from "react-hook-form"
 
 export default function Identificacion() {
 
+    const{register, handleSubmit}=useForm()
+
+    const navigateFn = useNavigate();
+    const { cartData, clearCart, totalPrecio} = useContext(CartContext)
+
+    const createOrder = (datos) => {
+        const itemsForDB = cartData.map(item => ({
+            id: item.item.item.id,
+            nombre: item.item.item.nombre,
+            precio: item.item.item.precio,
+            cantidad: item.item.quantity
+        }));
+        let order = {
+            buyer:  datos,
+            items: itemsForDB,
+            total: totalPrecio,
+            date: serverTimestamp()
+        };
 
 
+        const createOrderInFirestore = async () => {
+            // Add a new document with a generated id
+            const newOrderRef = doc(collection(DB, "Orders"));
+            await setDoc(newOrderRef, order);
+            return newOrderRef;
+        }
 
-    const [datos, setDatos] = useState({
-        nombre: '',
-        apellido: '',
-        email: '',
-        telefono: '',
-        ciudad: '',
-        departamento: '',
-        zip: ''
-    })
+        createOrderInFirestore()
+            .then((result) => {
+                alert("tu orden ha sido creada con el id" + result.id);
+                cartData.forEach(async (item) => {
+                    const itemRef = doc(DB, "Products", item.item.item.id);
+                    await updateDoc(itemRef, {
+                        stock: increment(-item.item.quantity),
+                    });
+                });
+                clearCart()
+                navigateFn(`/`)
+            })
+            .catch((err) => console.log("error" + err));
+    }
 
-    const handleInputChange = (ev) => {
-        setDatos({
-            ...datos,
-            [ev.target.name]: ev.target.value
-        })
+    const customSubmit = (data) => {
+        createOrder(data)
     }
     return (
-        <form onSubmit={ev => {
-            ev.preventDefault();
-        }} className='row '>
+        <form onSubmit={handleSubmit(customSubmit)} className='row '>
             <div className="form-floating  col-md-4 div-m">
                 <input
                     type='text'
-                    name="nombre"
+                    {...register('nombre')}
                     placeholder="Nombre"
-                    autoComplete="on"
-                    value={datos.nombre}
-                    onChange={handleInputChange}
                     className='form-control'
                 ></input>
                 <label htmlFor="floatingInputGrid">Nombre</label>
@@ -42,11 +68,9 @@ export default function Identificacion() {
             <div className="form-floating col-md-4 div-m">
                 <input
                     type='text'
-                    name="apellido"
+                    {...register('apellido')}
                     placeholder="Apellido"
                     autoComplete="on"
-                    value={datos.apellido}
-                    onChange={handleInputChange}
                     className='form-control'
                 ></input>
                 <label htmlFor="floatingInputGrid">Apellido</label>
@@ -54,11 +78,9 @@ export default function Identificacion() {
             <div className="col-md-6 form-floating div-m">
                 <input
                     type='email'
-                    name="email"
+                    {...register('email')}
                     placeholder="@email.com"
                     autoComplete="on"
-                    value={datos.email}
-                    onChange={handleInputChange}
                     className='form-control'
                 ></input>
                 <label htmlFor="floatingInputGrid">@email.com</label>
@@ -66,11 +88,9 @@ export default function Identificacion() {
             <div className="form-floating col-md-4 div-m">
                 <input
                     type='number'
-                    name="telefono"
+                    {...register('telefono')}
                     placeholder="Telefono"
                     autoComplete="on"
-                    value={datos.telefono}
-                    onChange={handleInputChange}
                     className='form-control'
                 ></input>
                 <label htmlFor="floatingInputGrid">Telefono</label>
@@ -78,9 +98,7 @@ export default function Identificacion() {
             <div className="form-floating col-md-4 div-m">
                 <select
                     className="form-select"
-                    name="departamento"
-                    value={datos.departamento}
-                    onChange={handleInputChange}>
+                    {...register('departamento')}>
                     <option defaultValue=""></option>
                     <option>Bogota D.C</option>
                     <option>Antioquia</option>
@@ -94,11 +112,9 @@ export default function Identificacion() {
             <div className="form-floating col-md-4 div-m">
                 <input
                     type='text'
-                    name="ciudad"
+                    {...register('ciudad')}
                     placeholder="Ciudad"
                     autoComplete="on"
-                    value={datos.ciudad}
-                    onChange={handleInputChange}
                     className='form-control'
                 ></input>
                 <label htmlFor="floatingInputGrid"> Ciudad</label>
@@ -106,17 +122,15 @@ export default function Identificacion() {
             <div className="form-floating col-md-2 div-m">
                 <input
                     type='text'
-                    name="zip"
+                    {...register('zip')}
                     placeholder="ZIP"
                     autoComplete="on"
-                    value={datos.zip}
-                    onChange={handleInputChange}
                     className='form-control'
                 ></input>
                 <label htmlFor="floatingInputGrid">ZIP</label>
             </div>
             <div align="col-12 div-m">
-                <Orden datos={datos}/>
+            <button className="btn btn-dark" type="submit">Procede al pago</button>
             </div>
         </form>
     )
