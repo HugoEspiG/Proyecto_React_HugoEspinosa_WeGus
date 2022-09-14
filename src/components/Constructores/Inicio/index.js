@@ -1,5 +1,5 @@
 import Imagen from '../Imagen';
-import { getItem } from '../../api/ItemApi';
+import { getItem } from '../../../api/ItemApi';
 import { useState, useEffect } from 'react';
 import './Inicio.css'
 

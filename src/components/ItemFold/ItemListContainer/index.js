@@ -1,7 +1,7 @@
 import { useEffect, useState  } from "react";
 import { useParams } from "react-router-dom";
 import ItemList from "../ItemList";
-import { getItems } from "../../api/ItemApi";
+import { getItems } from "../../../api/ItemApi";
 
 export default function ItemListContainer(props){
 

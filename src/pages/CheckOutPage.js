@@ -1,6 +1,6 @@
-import CheckOut from "../components/CheckOut/CheckOut";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import CheckOut from "../components/CheckOuts/CheckOut/CheckOut";
+import Footer from '../components/Constructores/Footer';
+import Header from '../components/Constructores/Header';
 
 export default function CheckOutPage(){
     return(

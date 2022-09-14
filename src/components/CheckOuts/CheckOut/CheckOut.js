@@ -8,7 +8,7 @@ export default function CheckOut(){
             <div className="col-sm-6 col-md-7">
             <Identificacion/>
             </div>
-            <div className="col-6 col-md-4">
+            <div className="col-6 col-md-4 border border-dark border border-2 rounded">
             <ResumenCompra/>
             </div>
         </div>

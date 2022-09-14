@@ -1,6 +1,6 @@
-import Footer from '../components/Footer';
-import Header from '../components/Header';
-import ItemListContainer from '../components/ItemListContainer';
+import Footer from '../components/Constructores/Footer';
+import Header from '../components/Constructores/Header';
+import ItemListContainer from '../components/ItemFold/ItemListContainer';
 
 export default function Outfits(){
     return(

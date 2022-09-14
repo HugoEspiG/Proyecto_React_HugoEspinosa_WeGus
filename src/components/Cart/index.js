@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import CartItem from './CartItem'
 import './Cart.css'
-import PasoPasarela from "../PasoPasarela";
+import PasoPasarela from "../CheckOuts/PasoPasarela";
 
 export default function Cart() {
     const { cartData ,clearCart} = useContext(CartContext)
@@ -33,7 +33,7 @@ export default function Cart() {
                                     </tbody>
                                 </table>
                             </div>
-                            <div className="col-6 col-md-4">
+                            <div className="col-6 col-md-3 size">
                                 <PasoPasarela/>
                             </div>
                         </div>

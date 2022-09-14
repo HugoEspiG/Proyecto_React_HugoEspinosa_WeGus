@@ -35,6 +35,7 @@ export function getItems(category) {
 }
 
 export function getItem(id) {
+
     return new Promise((res, rej) => {
         const colRef = collection(DB, "Products")
         getDocs(colRef).then((snapshot) => {
@@ -44,7 +45,13 @@ export function getItem(id) {
                     ...rawDoc.data()
                 }
             })
-            let ItemsCategory = prodConFormato.find(elemento => elemento.id == id)
+            let ItemsCategory
+            if (prodConFormato.filter(elemento => elemento.id === id).length) {
+                ItemsCategory = prodConFormato.find(elemento => elemento.id == id)
+            }
+            else {
+                ItemsCategory="No hay Items con este ID"
+            }
             res(ItemsCategory)
 
         }, (error) => {

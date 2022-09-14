@@ -1,9 +1,9 @@
-import Imagen from "../Imagen";
+import Imagen from "../../Constructores/Imagen";
 import ItemCount from "../ItemCount";
 import "./ItemDetail.css";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CartContext } from '../../context/CartContext'
+import { CartContext } from '../../../context/CartContext'
 
 export default function ItemDetail(props) {
 
@@ -29,7 +29,11 @@ export default function ItemDetail(props) {
             </div>
             <div className="col-6 col-md-4">
                 <h2>{props.item.nombre}</h2>
-                <h4>{"COP " + props.item.precio}</h4>
+                <h4>{new Intl.NumberFormat("de-DE", {
+                  style: "currency",
+                  currency: "COP",
+                  maximumSignificantDigits: 6,
+                }).format(props.item.precio)}</h4>
                 <p className="text-muted">{"Lleva un maximo de " + props.item.stock + " prendas"}</p>
                 <p className="text-dark">{props.item.descripcion}</p>
                 {(props.item.stock > 0) ? (

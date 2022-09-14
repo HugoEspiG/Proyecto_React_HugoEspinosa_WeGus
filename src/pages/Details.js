@@ -1,6 +1,6 @@
-import Footer from '../components/Footer';
-import Header from '../components/Header';
-import ItemDetailContainer from '../components/ItemDetailContainer';
+import Footer from '../components/Constructores/Footer';
+import Header from '../components/Constructores/Header';
+import ItemDetailContainer from '../components/Detail/ItemDetailContainer';
 
 export default function Details(){
     return(
