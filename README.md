@@ -1,3 +1,7 @@
+# Descripcion del proyecto
+Este proyecto es un e-commerce de frontend hecho con react para la venta de Outfits de ropa
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
